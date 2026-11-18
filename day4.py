@@ -1,0 +1,10 @@
+text = "968-Maria, ( D@ta Engineer );; 27y .."
+text=text.lower()
+text=text.replace("968-","").replace("(","").replace(")","")
+text=text.replace("@","a").replace(";","").replace(".","")
+text=text.replace("y","").replace(",","")
+text=text.strip()
+name=text[:5].strip()
+role = text[6:20].strip()
+age=text[20:].strip()
+print(f"name: {name} | role: {role} | age: {age}")

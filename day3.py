@@ -215,6 +215,108 @@ print(date[-2:])   #output:20
 ## negative index-->if you want to extract part from the right side (end) of a string
 
 
+################################# string-->cleaning ###############################
+##   clean whitespaces-->lstrip(),rstrip(),strip()
+##   clean cases-->lower(),upper()
+
+## data cleaning-->remove spaces
+#whitespace cleanup
+text=" Engineering".lstrip()
+print(text)   #lstrip()->str method,o/p:string,remove spaces from the left side of a string
+#output:Engineering
+
+text="Engineering ".rstrip()
+print(text)  #rstrip()->str method,o/p:string,removes spaces from right side of a string
+#output:Engineering
+
+text="  Engineering  ".strip()
+print(text)  #strip()->str method,o/p:string,removes spaces from both ends
+#output:Engineering
+
+##best practice-trim spaces from user input.
+##you never knows where users might add spaces. 
+##use strip() to remove all extra spaces from both ends.
+##it removes tabs and multiple spaces
+
+text="Data Engineering".strip()  #strip()-->only removes spaces at the start and end,not in the middle
+print(text)
+#output:Data Engineering
+
+text="###Abc###".strip("#")  #strip()->it removes any characters you want from start and end,not just spaces.
+print(text)
+#output:Abc
+
+##use case->detect extra spaces-->checks the length before and afer strip() to find unwanted spaces
+text="  Engineering"
+nr_of_spaces=len(text)-len(text.strip())
+is_clean=len(text)==len(text.strip())
+print("Number of spaces",nr_of_spaces)   #Number of spaces 2
+print("Is my data clean?",is_clean)      #Is my data clean? False
+
+########################## clean case ################
+## case conversion-->lower(),upper()
+
+#use case->standardize text case-->make sure text is always in lowercase
+text="python ProGRAmming"
+print(text.lower())  #lower()-->str method,o/p:string,makes all letters lower case
+#output:python programming
+
+#change in uppercase
+print(text.upper())  #upper()->str method,o/p:string,makes all letters upper case
+#output:PYTHON PROGRAMMING
+
+##use case->clean data for matching-->lowercase all text to prevent case based mismatches during search or comparision
+search="Email".lower()
+data="eMail".lower()
+print(search==data)
+#output:True
+
+## best practice->clean before search->always trim spaces and lowercase your data and search term before matching
+search="Email ".lower().strip()
+data="eMail  ".lower().strip()
+print(search==data)
+#output:True
+
+############### Python challenge
+##     turn the messy string into a single clean summary with name,role and age
+##      input:"968-Maria, ( D@ta Engineer );; 27y .."
+##      output:name: maria | role: data engineer | age: 27
+text = "968-Maria, ( D@ta Engineer );; 27y .."
+text=text.lower()
+text=text.replace("968-","").replace("(","").replace(")","")
+text=text.replace("@","a").replace(";","").replace(".","")
+text=text.replace("y","").replace(",","")
+text=text.strip()
+name=text[:5].strip()
+role = text[6:20].strip()
+age=text[20:].strip()
+print(f"name: {name} | role: {role} | age: {age}")
+
+###################### string-->search ####################
+#searching
+##use case->is the phone code german?check the country code(+49)
+phone="+49-176-12345"
+print(phone.startswith("+49"))  #startswith(substring)-->str method,o/p:boolean,checks if the string begins with a specific word
+#output:True
+
+##is the email from gamil?check the domain(gmail.com)
+email="regilin@gmail.com"
+print(email.endswith("gmail.com"))   #endswith(substring)-->str method,o/p:boolean,checks if the string ends with a specific word
+#output:True
+
+##is the file is csv?check the extension(.csv)
+file="data_backup.csv"
+print(file.endswith(".csv"))
+#output:True
+
+##is this a valid email? check for @
+email="regilin@gmail.com"
+print("@" in email)  #"substring" in "string"->operator,o/p:int,checks if a word exists in the string
+#output:True
+
+
+
+
 
 
 
